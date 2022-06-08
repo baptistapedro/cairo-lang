@@ -1,5 +1,7 @@
 FROM fuzzers/atheris:2.0.7-python3.9
-COPY src/fuzz_blockify.py /fuzz_blockify
+COPY src/syscallName_fuzz.py ./syscallNameFuzz.py
+RUN apt-get update && apt-get install -y libgmp3-dev
+RUN pip3 install cairo-lang
 
 ENTRYPOINT []
-CMD ["/fuzz_blockify.py"]
+CMD ["python3" "./syscallNameFuzz.py"]
